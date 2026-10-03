@@ -55,11 +55,36 @@
   "Content\t2556626096": "Squelette perceur",
   "Content\t3096529390": "Gargantar"
   "Content\t2226227937": "Sacoche à viande"
+  "GraphLiteral\t2161413490": "\nBooléen de promenade apprivoisée : ",
+  "GraphLiteral\t1496779668": "\nDistance de promenade aléatoire : ",
+  "Content\t1212585037": "Peut transformer les matières fécales en pétrole et en compost, mais seulement en mode « promenade» !",
+  "Globals\t140905660": "Désactiver la promenade",
+  "Globals\t3120051725": "Activer la promenade",
+  "Globals\t1680411175": "Activer la promenade ou l'accouplement pour permettre la reproduction.",
+  "GraphLiteral\t2448522609": "Distance de promenade {0}",
+  "GraphLiteral\t23220954": "EMPLACEMENT DE PROMENADE DIST 2 : ",
+  "GraphLiteral\t3959029055": "\nDistance de promenade fixe : "
  },
  "widgets": {
   "\t0E13A7DB41A89598947A41958DBB4CB9": [
    "Cursed Fortitude",
    "Résistance maudite"
+  ],
+  "\tDB1EFA1D44757B702F07AC866CB74720": [
+   "AUTOMATICALLY CREATE WAYPOINT ON DEATH:",
+   "CRÉER AUTOMATIQUEMENT UN MARQUEUR À LA MORT :"
+  ],
+  "\tE7D7DD084492E6A092AEAA808AEBA86A": [
+   "DELETE DEATH WAYPOINT",
+   "SUPPRIMER LE MARQUEUR DE MORT"
+  ],
+  "\t4F9EB121492EFAEAB9381A89230EDF32": [
+   "Waypoint",
+   "Marqueur"
+  ],
+  "\tC667E7EF454EAFA59496EBA61A5D1F07": [
+   "Waypoint",
+   "Marqueur"
   ]
  }
 }
