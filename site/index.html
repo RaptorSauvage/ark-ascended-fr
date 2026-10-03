@@ -129,10 +129,13 @@ a { color: var(--accent); }
 <script>
 const DEPOT = "valentin-gosselin/ark-ascended-fr";
 const BRANCHE = "master";
-// L'URL d'edition prefille l'editeur de GitHub. Les navigateurs et les serveurs
-// plafonnent la longueur d'une URL : au-dela d'une quinzaine de lignes la
-// contribution ne passerait plus, et une pull request courte se relit mieux.
-const MAX_PAR_ENVOI = 15;
+// L'URL d'edition prefille l'editeur de GitHub, et sa longueur est plafonnee
+// par les navigateurs comme par les serveurs. Compter les lignes etait une
+// mauvaise mesure : une ligne pese de dix a trois cents caracteres une fois
+// encodee. On mesure donc l'URL elle-meme, et on envoie par lots le plus gros
+// paquet qui tienne. Un contributeur a deja renonce a l'interface pour ecrire
+// son fichier a la main, faute de pouvoir envoyer plus de quinze lignes.
+const LIMITE_URL = 7800;
 const PAR_PAGE = 60;
 
 const LOCRES = 0, WIDGET = 1;
@@ -243,15 +246,45 @@ function rendre() {
   majPanier();
 }
 
+// Construit l'URL d'edition pour un sous-ensemble de modifications.
+// Deux destinations : les chaines du fichier de langue vont dans la couche de
+// corrections, les textes non collectes gardent leur source anglaise parce que
+// son hash conditionne leur prise en compte par le moteur.
+function construireUrl(entrees, nom) {
+  const parCle = new Map(lignes.map((l) => [l[0], l]));
+  const contenu = { corrections: {}, widgets: {} };
+  for (const [cle, texte] of entrees) {
+    const l = parCle.get(cle);
+    if (!l) continue;
+    if (l[3] === WIDGET) contenu.widgets[cle] = [l[1], texte];
+    else contenu.corrections[cle] = texte;
+  }
+  return `https://github.com/${DEPOT}/new/${BRANCHE}`
+    + `?filename=${encodeURIComponent(nom)}`
+    + `&value=${encodeURIComponent(JSON.stringify(contenu, null, 1))}`;
+}
+
+// Le plus grand prefixe des modifications dont l'URL tienne sous la limite.
+// Au moins une ligne, meme tres longue : mieux vaut un lien un peu gros qu'un
+// bouton qui ne fait rien.
+function lotEnvoyable(nom) {
+  const toutes = [...modifs];
+  let n = 0;
+  while (n < toutes.length && construireUrl(toutes.slice(0, n + 1), nom).length <= LIMITE_URL) n++;
+  return toutes.slice(0, Math.max(n, 1));
+}
+
 function majPanier() {
   const n = modifs.size;
   $("panier").hidden = n === 0;
   if (!n) return;
-  const trop = n > MAX_PAR_ENVOI;
-  $("panier-texte").textContent = trop
-    ? `${n} lignes modifiees. Envoyez-en ${MAX_PAR_ENVOI} au plus a la fois : au-dela, GitHub refuse le lien.`
-    : `${n} ligne${n > 1 ? "s" : ""} modifiee${n > 1 ? "s" : ""}.`;
-  $("proposer").disabled = trop;
+  const lot = lotEnvoyable("data/propositions/x.json").length;
+  $("panier-texte").textContent = lot >= n
+    ? `${n} ligne${n > 1 ? "s" : ""} modifiee${n > 1 ? "s" : ""}.`
+    : `${n} lignes modifiees. L'envoi passe par un lien, dont la longueur est `
+      + `limitee : les ${lot} premieres partiront, les ${n - lot} autres `
+      + `resteront dans le panier pour un second envoi.`;
+  $("proposer").disabled = false;
 }
 
 $("q").addEventListener("input", appliquer);
@@ -265,23 +298,14 @@ for (const [id, val] of [["f-tout", "tout"], ["f-manquant", "manquant"], ["f-wid
 $("vider").addEventListener("click", () => { modifs.clear(); rendre(); });
 
 $("proposer").addEventListener("click", () => {
-  // Deux destinations : les chaines du fichier de langue vont dans la couche
-  // de corrections, les textes non collectes gardent leur source anglaise
-  // parce que son hash conditionne leur prise en compte par le moteur.
-  const parCle = new Map(lignes.map((l) => [l[0], l]));
-  const contenu = { corrections: {}, widgets: {} };
-  for (const [cle, texte] of modifs) {
-    const l = parCle.get(cle);
-    if (!l) continue;
-    if (l[3] === WIDGET) contenu.widgets[cle] = [l[1], texte];
-    else contenu.corrections[cle] = texte;
-  }
   const jeton = Math.random().toString(36).slice(2, 8);
   const nom = `data/propositions/${new Date().toISOString().slice(0, 10)}-${jeton}.json`;
-  const url = `https://github.com/${DEPOT}/new/${BRANCHE}` +
-    `?filename=${encodeURIComponent(nom)}` +
-    `&value=${encodeURIComponent(JSON.stringify(contenu, null, 1))}`;
-  window.open(url, "_blank", "noopener");
+  const lot = lotEnvoyable(nom);
+  window.open(construireUrl(lot, nom), "_blank", "noopener");
+  // Les lignes parties quittent le panier : ce qui reste est exactement ce
+  // qu'il reste a envoyer, sans que le contributeur ait a tenir le compte.
+  for (const [cle] of lot) modifs.delete(cle);
+  rendre();
 });
 </script>
 </body>
