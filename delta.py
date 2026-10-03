@@ -24,8 +24,8 @@ REFERENCE = os.path.join(RACINE, "data/reference_en.json")
 EN = os.path.join(RACINE, "work/en.json")
 SORTIE = os.path.join(RACINE, "work/delta")
 DATA = ["overrides.json", "additions.json", "corrections.json"]
-ASA = "/mnt/Apps/SteamLibrary/steamapps/common/ARK Survival Ascended"
-SRC_PAK = os.path.join(ASA, "ShooterGame/Content/Paks/pakchunk0-Windows.pak")
+sys.path.insert(0, os.path.join(RACINE, "tools"))
+import chemins   # noqa: E402  (a besoin de RACINE)
 
 
 def extraire():
@@ -40,7 +40,7 @@ def extraire():
 
 
 def empreinte():
-    st = os.stat(SRC_PAK)
+    st = os.stat(chemins.chunk0())
     return {"taille": st.st_size, "date": int(st.st_mtime)}
 
 

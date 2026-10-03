@@ -28,9 +28,9 @@ RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(RACINE, "tools"))
 import textes_assets
 
+import chemins   # noqa: E402  (a besoin de RACINE dans sys.path)
+
 RETOC = os.path.join(RACINE, "tools/retoc_cli-x86_64-unknown-linux-gnu/retoc")
-UTOC = ("/mnt/Apps/SteamLibrary/steamapps/common/ARK Survival Ascended"
-        "/ShooterGame/Content/Paks/pakchunk0-Windows.utoc")
 
 
 def _lot(args):
@@ -42,7 +42,7 @@ def _lot(args):
     try:
         for nom, chunk in entrees:
             try:
-                subprocess.run([RETOC, "get", UTOC, chunk, tmp],
+                subprocess.run([RETOC, "get", chemins.chunk0("utoc"), chunk, tmp],
                                stdout=subprocess.DEVNULL,
                                stderr=subprocess.DEVNULL, timeout=60)
                 with open(tmp, "rb") as f:
