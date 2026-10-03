@@ -1,0 +1,24 @@
+{
+ "corrections": {
+  "Content\t2080980815": "Piolet d'escalade",
+  "Content\t1171742652": "Magmasaure brutal",
+  "Content\t862275882": "Chibi Magmasaure",
+  "Content\t2969146134": "Œuf fécondé de Magmasaure",
+  "Content\t592795682": "Équipez un Magmasaure avec ceci pour le monter. Sa conception résistante protège le cavalier des chaleurs extrêmes.",
+  "Content\t638417041": "Trouvez le nid pour trouver l'œuf de Magmasaure",
+  "Content\t3927078656": "Chassez le Magmasaure, et essayez de garder votre sang-froid.",
+  "Content\t2911741529": "Magmasaure",
+  "Content\t3199261592": "Œuf de Magmasaure",
+  "GraphLiteral\t3199261592": "Œuf de Magmasaure",
+  "Content\t2300062019": "Œufs de Magmasaure récupérés",
+  "Content\t3610451519": "Chaleur du Magmasaure",
+  "Content\t3124511117": "Nid de Magmasaure",
+  "Content\t3475015102": "Le Magmasaure empêche le gel"
+ },
+ "widgets": {
+  "\t51399DF94AA751772ECFAA87751839EE": [
+   "Magmasaur Egg",
+   "Œuf de Magmasaure"
+  ]
+ }
+}
