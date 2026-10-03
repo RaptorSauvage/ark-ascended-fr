@@ -103,9 +103,12 @@ def cellule(texte, taille=110):
 
 def corps_issue(rapport, a_traduire, a_revoir, propositions, n_tech, n_orph):
     d = rapport
-    L = [
-        f"Le pak du jeu est passe de {d['avant']} a {d['apres']} octets.",
-        "",
+    L = []
+    # en CI l'anglais arrive deja extrait du pak du serveur dedie : aucune
+    # taille comparable a celle du pak client figee dans la reference
+    if d["apres"] is not None:
+        L += [f"Le pak du jeu est passe de {d['avant']} a {d['apres']} octets.", ""]
+    L += [
         "| | |",
         "|---|---|",
         f"| Chaines anglaises | {d['n_avant']} -> {d['n_apres']} |",
@@ -171,7 +174,7 @@ def main():
     ref = json.load(open(REFERENCE))
     if fourni:
         nouveau = json.load(open(fourni))
-        emp = {"taille": os.path.getsize(fourni), "date": 0}
+        emp = {"taille": None, "date": 0}
         if nouveau == ref["chaines"] and not forcer:
             print("aucun changement de texte dans cette mise a jour")
             return 0
