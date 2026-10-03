@@ -8,7 +8,9 @@
 # Le code amont ne compile que sous MSVC : on lui fournit un stdafx portable et
 # on ecarte son outil en ligne de commande, qui charge la DLL Windows d'Oodle.
 set -euo pipefail
-DEST="${1:-$(cd "$(dirname "$0")" && pwd)/libooz.so}"
+# absolu, et resolu avant le cd dans le dossier temporaire : un chemin relatif
+# ne designerait plus rien au moment de lier
+DEST="$(realpath -m "${1:-$(cd "$(dirname "$0")" && pwd)/libooz.so}")"
 TRAVAIL="$(mktemp -d)"
 trap 'rm -rf "$TRAVAIL"' EXIT
 

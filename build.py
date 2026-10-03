@@ -17,9 +17,8 @@ import subprocess
 import sys
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
-ASA = "/mnt/Apps/SteamLibrary/steamapps/common/ARK Survival Ascended"
-PAKS = os.path.join(ASA, "ShooterGame/Content/Paks")
-SRC_PAK = os.path.join(PAKS, "pakchunk0-Windows.pak")
+sys.path.insert(0, os.path.join(ROOT, "tools"))
+import chemins   # noqa: E402  (a besoin de ROOT)
 LOCRES_IN_PAK = "../../../ShooterGame/Content/Localization/ShooterGame/{lang}/ShooterGame.locres"
 # Certains libelles ne sont pas dans le locres du jeu mais dans celui du moteur :
 # les noms de touches (namespace InputKeys) y vivent, d'ou l'affichage
@@ -53,9 +52,9 @@ def main():
     # 1. extraction (avec cache : invalidé si le pak du jeu est plus récent)
     for lang in ("fr", "en"):
         out = os.path.join(WORK, f"ShooterGame_{lang}.locres")
-        if not os.path.exists(out) or os.path.getmtime(out) < os.path.getmtime(SRC_PAK):
+        if not os.path.exists(out) or os.path.getmtime(out) < os.path.getmtime(chemins.chunk0()):
             run(sys.executable, os.path.join(ROOT, "tools/pakv12.py"), "extract",
-                SRC_PAK, LOCRES_IN_PAK.format(lang=lang), out)
+                chemins.chunk0(), LOCRES_IN_PAK.format(lang=lang), out)
             run(sys.executable, os.path.join(ROOT, "tools/locres.py"), "dump",
                 out, os.path.join(WORK, f"{lang}.json"))
     # 2. fusion des données du patch
@@ -135,9 +134,9 @@ def main():
     if os.path.exists(engine_data):
         for lang in ("fr", "en"):
             out = os.path.join(WORK, f"Engine_{lang}.locres")
-            if not os.path.exists(out) or os.path.getmtime(out) < os.path.getmtime(SRC_PAK):
+            if not os.path.exists(out) or os.path.getmtime(out) < os.path.getmtime(chemins.chunk0()):
                 run(sys.executable, os.path.join(ROOT, "tools/pakv12.py"), "extract",
-                    SRC_PAK, ENGINE_IN_PAK.format(lang=lang), out)
+                    chemins.chunk0(), ENGINE_IN_PAK.format(lang=lang), out)
         stage_e = os.path.join(WORK, "pak_stage/Engine/Content/Localization/Engine/fr")
         os.makedirs(stage_e, exist_ok=True)
         # merge et non build : certaines touches (Apostrophe, Caret...) n'ont
@@ -153,16 +152,24 @@ def main():
     # 4. installation
     if "--no-install" not in sys.argv:
         import shutil
+        if chemins.serveur_dedie():
+            # Le patch se construit tres bien depuis un serveur dedie, son locres
+            # etant identique a celui du client. L'y installer, en revanche,
+            # modifierait un serveur de jeu en production : on refuse.
+            print("installation refusée : l'installation trouvée est un serveur\n"
+                  "  dédié, pas le client. Le pak est construit, il reste dans\n"
+                  f"  {pak}. Pour construire sans installer : ./build.py --no-install")
+            return 1
         if jeu_lance():
             print("ARK tourne : installation annulée.\n"
                   "  Le moteur garde le pak ouvert et mappé en mémoire. Le remplacer\n"
                   "  a chaud ne met rien a jour et corrompt ce que le jeu lit encore :\n"
                   "  des textes deja affiches repassent en anglais sans raison.\n"
-                  f"  Quittez le jeu puis copiez {pak} dans {PAKS},\n"
+                  f"  Quittez le jeu puis copiez {pak} dans {chemins.paks()},\n"
                   "  ou relancez ./build.py.")
             return 1
-        shutil.copy2(pak, os.path.join(PAKS, "TradFR_P.pak"))
-        print(f"installé dans {PAKS}")
+        shutil.copy2(pak, os.path.join(chemins.paks(), "TradFR_P.pak"))
+        print(f"installé dans {chemins.paks()}")
     return 0
 
 

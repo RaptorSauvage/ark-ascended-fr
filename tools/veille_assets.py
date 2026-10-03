@@ -36,9 +36,9 @@ sys.path.insert(0, os.path.join(RACINE, "tools"))
 # un balayage complet, les suivants sont instantanes.
 REFERENCE = os.path.join(RACINE, "work/reference_assets.json")
 MANIFESTE = os.path.join(RACINE, "work/pakstore.json")
+import chemins   # noqa: E402  (a besoin de RACINE dans sys.path)
+
 RETOC = os.path.join(RACINE, "tools/retoc_cli-x86_64-unknown-linux-gnu/retoc")
-UTOC = ("/mnt/Apps/SteamLibrary/steamapps/common/ARK Survival Ascended"
-        "/ShooterGame/Content/Paks/pakchunk0-Windows.utoc")
 
 # Memes exclusions que le balayage complet : ni textures, ni sons, ni modeles.
 EXCLU = re.compile(
@@ -59,10 +59,9 @@ SANS_INTERET = re.compile(
 
 def regenerer_manifeste():
     """Relit la liste des paquets du jeu. Sans cela on travaille sur du perime."""
-    if not os.path.exists(UTOC):
-        sys.exit(f"Jeu introuvable : {UTOC}")
+    utoc = chemins.chunk0("utoc")
     os.makedirs(os.path.join(RACINE, "work"), exist_ok=True)
-    subprocess.run([RETOC, "manifest", UTOC], cwd=RACINE, check=True,
+    subprocess.run([RETOC, "manifest", utoc], cwd=RACINE, check=True,
                    stdout=subprocess.DEVNULL)
     os.replace(os.path.join(RACINE, "pakstore.json"), MANIFESTE)
 
