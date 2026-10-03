@@ -1,5 +1,19 @@
 {
  "corrections": {
+  "Content\t2080980815": "Piolet d'escalade",
+  "Content\t1171742652": "Magmasaure brutal",
+  "Content\t862275882": "Chibi Magmasaure",
+  "Content\t2969146134": "Œuf fécondé de Magmasaure",
+  "Content\t592795682": "Équipez un Magmasaure avec ceci pour le monter. Sa conception résistante protège le cavalier des chaleurs extrêmes.",
+  "Content\t638417041": "Trouvez le nid pour trouver l'œuf de Magmasaure",
+  "Content\t3927078656": "Chassez le Magmasaure, et essayez de garder votre sang-froid.",
+  "Content\t2911741529": "Magmasaure",
+  "Content\t3199261592": "Œuf de Magmasaure",
+  "GraphLiteral\t3199261592": "Œuf de Magmasaure",
+  "Content\t2300062019": "Œufs de Magmasaure récupérés",
+  "Content\t3610451519": "Chaleur du Magmasaure",
+  "Content\t3124511117": "Nid de Magmasaure",
+  "Content\t3475015102": "Le Magmasaure empêche le gel"
   "Content\t2004824437": "Récupérez l'Oeuf de Magmasaure",
   "Content\t196630376": "Elle vous guidera jusqu'à l'œuf de Magmasaure",
   "DT_Milestones_ToF\t2753241219": "Voler 1 œuf de Magmasaure",
@@ -108,6 +122,10 @@
   "\tDAA6171F498C503BC191F694921D28F9": [
    "Craft 100 Tranquilizer Spear Bolts",
    "Fabriquer 100 flèches en fonte tranquillisants"
+  ],
+    "\t51399DF94AA751772ECFAA87751839EE": [
+   "Magmasaur Egg",
+   "Œuf de Magmasaure"
   ],
   "\tBF25E01F43AA5645F9CC84A231C7A257": [
    "Craft 500 Simple Rifle Ammo",
