@@ -111,8 +111,8 @@
   "DT_Milestones_ToF\t3580047671": "Apprivoiser 1 Mégachelon au niveau 135+",
   "Content\t3912978562": "Kroaratos",
   "Content\t4291623830": "Colossus",
-  "Globals\t1419298229": "%s A GAGNÉ UN NIVEAU ! ACCÉDEZ À L'INVENTAIRE DE L'APPRIVOISÉ POUR L'APPLIQUER !",
-  "Globals\t3911825498": "NOUVEAU NIVEAU DISPONIBLE ! ACCÉDEZ À L'INVENTAIRE POUR L'APPLIQUER !"
+  "Globals\t1419298229": "%s A GAGNÉ UN NIVEAU !",
+  "Globals\t3911825498": "NOUVEAU NIVEAU DISPONIBLE !",
  },
  "widgets": {
   "\t0E13A7DB41A89598947A41958DBB4CB9": [
