@@ -1,0 +1,108 @@
+{
+ "corrections": {
+  "Content\t2195224906": "+1 %/+15 régénération des HPs, -10 % de consommation d'endurance",
+  "GraphLiteral\t1039231578": "- Augmente la vie maximale de la créature montée de {0}% ",
+  "DT_ShipSkills\t2000703529": "Les joueurs alliés sur ce vaisseau gagnent {!RegenBonus} de régénération des HP et d'Endurance, et perdent leur Eau et Nourriture {ConsumptionReduction} plus lentement que la normale.",
+  "Content\t3576303038": "HP du Beelzebufo",
+  "Content\t1271806309": "HP de la cache :",
+  "Content\t3089677834": "Le Chalico consomme nourriture et eau à moitié moins vite que la normale. Il récupère aussi 2 % de ses HP par seconde.",
+  "Content\t2546426934": "Le Chalico consomme nourriture et eau à moitié moins vite que la normale. Il récupère aussi 2 % de ses HP par seconde.",
+  "GraphLiteral\t3032326521": "Coût actuel en vie",
+  "GraphLiteral\t1158506378": "Diminuer le seuil du tampon de HP depuis : ",
+  "Content\t2386659119": "RÉCUPÉRATION DE VIE DU PERSONNAGE DINO :",
+  "Content\t1350421563": "Le dino consomme nourriture et eau à moitié moins vite que la normale. Il récupère aussi 2 % de ses HP par seconde et un drain de torpeur accru.",
+  "Content\t4277010907": "Vie restante du dino",
+  "Content\t3667963758": "HP du Dodo",
+  "GraphLiteral\t17209008": "Boire une soupe, une potion de vie ou d'endurance a {Chance} de chance de <RichColor Color=\"1,0,0,1\">ne pas</> consommer l'objet.",
+  "Content\t3634939746": "Vie de l'œuf",
+  "Content\t2385309523": "Vie de l'œuf : 0,0 %",
+  "Content\t386502156": "Vie de l'embryon",
+  "GraphLiteral\t4027309312": "Vie de l'embryon : 0,0 %",
+  "Content\t3893861774": "HP du dino escorté",
+  "Content\t2665510570": "Récupération des HP fortement augmentée et consommation d'oxygène réduite",
+  "Content\t1943104726": "VIE",
+  "Content\t1063735600": "Vie",
+  "GraphLiteral\t1943104726": "VIE",
+  "GraphLiteral\t1063735600": "Vie",
+  "Content\t1102990250": "Vie\n%i\n--\n%i",
+  "Content\t1733830261": "Les HP doit être sous {0} %.",
+  "GraphLiteral\t1733830261": "Les HP doit être sous {0} %.",
+  "Content\t2903492352": "VIE :",
+  "Globals\t3891437097": "Vie: ",
+  "Globals\t3406468518": "Vie: %.0f/%.0f",
+  "Content\t2294835480": "Vie: 0.0%",
+  "Content\t401347818": "HP d'Icco",
+  "GraphLiteral\t4139983458": "Augmenter le seuil du tampon de HP depuis : ",
+  "Content\t1421833254": "Récupération des HP accrue et consommation d'oxygène réduite",
+  "Content\t3977817645": "Augmente vos HP, mais vous endort.",
+  "Content\t4158283171": "HP du Buldog",
+  "Content\t261171664": "SANTE FAIBLE",
+  "GraphLiteral\t2182134725": "Vie mutable"
+ },
+ "widgets": {
+  "\t1180D986461A64E2145403BE751FEE16": [
+   "- Increases mounted creature's max health by {0}% ",
+   "- Augmente la vie maximale de la créature montée de {0}% "
+  ],
+  "DT_ShipSkills\tGalley_SkillDescription": [
+   "Allied Players on this Ship gain {!RegenBonus} Health and Stamina regen, and lose Water and Food {ConsumptionReduction} slower than normal.",
+   "Les joueurs alliés sur ce navire gagnent {!RegenBonus} de régénération des HP et d'Endurance, et perdent leur Eau et Nourriture {ConsumptionReduction} plus lentement que la normale."
+  ],
+  "\t30E7E23249E767FE5A7D0C89AEDC16CF": [
+   "Current Health Cost",
+   "Coût actuel en vie"
+  ],
+  "\tC9123DCD44E0DC3DE13AB5B9AE852951": [
+   "Decrease Health Buffer Threshold From: ",
+   "Diminuer le seuil du tampon de HP depuis : "
+  ],
+  "\tC01C669D4D11B949354579B011C986E3": [
+   "Drinking a soup, health or stamina brew has a {Chance} chance to <RichColor Color=\"1,0,0,1\">not</> consume the item.",
+   "Boire une soupe, une potion de vie ou d'endurance a {Chance} de chance de <RichColor Color=\"1,0,0,1\">ne pas</> consommer l'objet."
+  ],
+  "\t62A6DCCA4AB29AB2D02ACEAA5F8E7AE3": [
+   "Embryo Health: 0.0%",
+   "Vie de l'embryon : 0,0 %"
+  ],
+  "\t1215CD614D403E21D145CCA8D79B5521": [
+   "Health",
+   "Vie"
+  ],
+  "\t138F8EA045A71E16B86520A688C59970": [
+   "Health",
+   "Vie"
+  ],
+  "\t375486DA48681F68718AC59EEDD05119": [
+   "Health",
+   "Vie"
+  ],
+  "\t4B3168DD4F17E5C4BA6014A6FF052FF1": [
+   "HEALTH",
+   "VIE"
+  ],
+  "\t5BAB89154E027F3383BFFF95CE5B1840": [
+   "Health",
+   "Vie"
+  ],
+  "\t7A03BF7045D55FB7267214982BF432C2": [
+   "HEALTH",
+   "VIE"
+  ],
+  "\t9CDCB9E442CADE19A3FC8C927201C2D5": [
+   "Health",
+   "Vie"
+  ],
+  "\tF344255D41596619541E599EC82F86AB": [
+   "Health",
+   "Vue"
+  ],
+  "\tE835729A4ED8CEF5FC3AF39DE0C8D7B4": [
+   "Increase Health Buffer Threshold From: ",
+   "Augmenter le seuil du tampon de HP depuis : "
+  ],
+  "\t85B4CB3346A486F8DCFB93B2EB26A007": [
+   "Mutable Health",
+   "Vie mutable"
+  ]
+ }
+}
